@@ -1,0 +1,30 @@
+# rails_first_app
+http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/0013752340242354807e192f02a44359908df8a5643103a000
+
+https://www.gitbook.com/book/sdlong/rails101s/details
+Rails101s下载。
+
+http://rails101s.logdown.com/posts/210429-1-2
+online_rail101s_blog
+
+
+https://github.com/GAODOIT/dowell
+https://github.com/GAODOIT/Learngit
+https://github.com/GAODOIT/rails_first_app
+
+
+GAODOIT
+905809284@qq.com(绑定)
+gdd19880717
+
+git push -u origin master
+git push origin master
+
+我不太赞同“脑子需要洗洗了”那位童鞋的说法。以我的记忆来看，upstream不是针对远程仓库的，而是针对branch的，这一点应了那位童鞋所说的第二句话。但是upstream和有几个远程库没有必然联系。比如远程库A上有3个分支branch1、branch2、branch3。远程库B上有3个分支branchx、branchy、branchz。本地仓库有2个分支local1和local2。那么当初始状态时，local1和local2和任何一个分支都没有关联，也就是没有upstream。当通过git branch --set-upstream-to A/branch1 local1命令执行后，会给local1和branch1两个分支建立关联，也就是说local1的upstream指向的是branch1。这样的好处就是在local1分支上执行git push（git pull同理）操作时不用附加其它参数，Git就会自动将local1分支上的内容push到branch1上去。同样，local2分支也可以和远程库A和远程库B上的任何一个分支建立关联，只要给local2分支设置了upstream，就可以在local2分支上用git push（git pull同理）方便地与目标分支推拉数据。
+综上所述，upstream与有几个远程库没有关系，它是分支与分支之间的流通道。
+再来说说git push -u和git branch --set-upstream-to指令之间的区别。
+举个例子：我要把本地分支master与远程仓库origin里的分支gaga建立关联。
+（如果使用下列途径1的话，首先，你要切换到master分支上（git checkout master））
+两个途径：1. git push -u origin gaga 2. git branch --set-upstream-to=origin/gaga master
+这两种方式都可以达到目的。但是1方法更通用，因为你的远程库有可能并没有gaga分支，这种情况下你用2方法就不可行，连目标分支都不存在，怎么进行关联呢？所以可以总结一下：git push -u origin gaga 相当于 git push origin gaga + git branch --set-upstream-to=origin/gaga master
+
