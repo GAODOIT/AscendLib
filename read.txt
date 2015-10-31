@@ -1,3 +1,7 @@
+ http://blog.chinaunix.net/uid-9967220-id-1995615.html
+ 
+ https://github.com/CodyGuo
+ XCGUI
  http://blog.csdn.net/hubi0952/article/details/8045094
  http://blog.csdn.net/qq910894904/article/details/38583485
  http://blog.csdn.net/sparkliang/article/details/5359634--C/C++语言实现动态数组

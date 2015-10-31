@@ -1,0 +1,1 @@
+Sat Oct 31 17:30:23 2015 : Error: Errors reading dictionary: dict_init: /root/GAODONG_WORK/Daily_Test/AscendLib/radius2.9/etc/raddb/dictionary[14]: Couldn't open dictionary "/nac/radius2.9/share/freeradius/dictionary": No such file or directory
