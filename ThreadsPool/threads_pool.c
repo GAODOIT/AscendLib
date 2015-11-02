@@ -7,8 +7,8 @@
 #include <pthread.h>
 #include <assert.h>
 
-#define	DO_TRUE		1
-#define DO_FALSE	0
+#define	DO_TRUE		1 //destroy
+#define DO_FALSE	0 // no destroy
 #define MAX_THREAD_NUM  5
 /*
 *线程池里所有运行和等待的任务都是一个CThread_worker
