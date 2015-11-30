@@ -44,7 +44,7 @@ class WordIndex
         phrases.each do |phrase|
             phrase.scan(/\w[-\w']+/) do |word|
                 word.downcase!
-                @index[word] = {} if @index[word].nil?
+                @index[word] = [] if @index[word].nil?
                 @index[word].push(obj)
             end
         end
@@ -59,6 +59,7 @@ class SongList
     MAX_TIME = 5*60
     def initialize
         @songs = Array.new
+        @index = WordIndex.new
     end
 
     def self.is_too_long(song)
@@ -67,7 +68,12 @@ class SongList
 
     def append(song)
         @songs.push(song)
+        @index.add_to_index(song, song.name, song.artist)
         self
+    end
+
+    def lookup(word)
+        @index.lookup(word)
     end
 
     def delete_first
@@ -105,7 +111,7 @@ s2 = Song.new("title2", "artist2", 2)
 s3 = Song.new("title3", "artist3", 3)
 s4 = Song.new("title4", "artist4", 4)
 list.append(s1).append(s2).append(s3).append(s4)
-puts list.with_title("title1")
+#puts list.with_title("title1")
 
 File.open("./songdata") do |song_file|
     song_lists = SongList.new
@@ -115,11 +121,47 @@ File.open("./songdata") do |song_file|
         mins, secs = length.scan(/\d+/)
         song_lists.append(Song.new(title, name, mins.to_i*60+secs.to_i))
     end
-    puts song_lists[1]
+    puts song_lists.lookup("Fats")
+    puts song_lists.lookup("ain't")
+    puts song_lists.lookup("RED")
+    puts song_lists.lookup("WoRlD")
 end
 
-require 'test/unit'
+class VU
+    #include Comparable
+    attr_accessor :volume
+    def initialize(volume) # 0..9
+        @volume = volume
+    end
+
+    def inspect
+        "#" * @volume
+    end
+
+    #Support for ranges
+    def <=>(other)
+        self.volume <=> other.volume
+    end
+
+    def succ
+        raise(IndexError, "Volume too big") if @volume >= 9
+        VU.new(@volume.succ)
+    end
+end
+
+#test_volume = VU.new(3)
+#puts test_volume.to_a
+
+medium_volume = VU.new(4)..VU.new(8)
+print medium_volume.to_a
+puts
+puts medium_volume
+#medium_volue.find {|medium| puts medium}
+puts medium_volume.include?(VU.new(10))
+
+
 =begin
+require 'test/unit'
 class TestSongList < Test::Unit::TestCase
     def test_delete
         list = SongList.new
