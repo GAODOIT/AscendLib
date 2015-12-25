@@ -1,0 +1,8 @@
+# Nmap 5.51 scan initiated Tue Dec 22 16:07:56 2015 as: nmap -o -vv 10.10.3.1
+Nmap scan report for 10.10.3.1
+Host is up (0.032s latency).
+Not shown: 999 closed ports
+PORT   STATE SERVICE
+23/tcp open  telnet
+
+# Nmap done at Tue Dec 22 16:08:09 2015 -- 1 IP address (1 host up) scanned in 13.50 seconds
